@@ -1,0 +1,11 @@
+#!/usr/bin/env ruby
+
+# puts "Hello"
+# require_relative "./lib/make_a_cocktail"
+
+# require "bundler/setup"
+# require "enviornment"
+
+require './lib/make_a_cocktail'
+
+MakeACocktail::CLI.new.start
