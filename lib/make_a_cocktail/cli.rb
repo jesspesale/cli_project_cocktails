@@ -5,5 +5,4 @@ class MakeACocktail::CLI
     end
 
 
-
 end
