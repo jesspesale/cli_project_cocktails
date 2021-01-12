@@ -6,7 +6,8 @@ require 'colorize'
 
 require_relative "./make_a_cocktail/version"
 require_relative "./make_a_cocktail/cli"
-
+require_relative "./make_a_cocktail/scraper"
+require_relative "./make_a_cocktail/drink"
 
 
 

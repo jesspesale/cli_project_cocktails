@@ -2,11 +2,13 @@ PATH
   remote: .
   specs:
     make_a_cocktail (0.1.0)
+      nokogiri
 
 GEM
   remote: https://rubygems.org/
   specs:
     coderay (1.1.3)
+    colorize (0.8.1)
     diff-lcs (1.4.4)
     method_source (1.0.0)
     mini_portile2 (2.4.0)
@@ -34,9 +36,9 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  bundler
+  bundler (~> 2.0)
+  colorize
   make_a_cocktail!
-  nokogiri (= 1.10.8)
   pry
   rake (~> 12.0)
   rspec
