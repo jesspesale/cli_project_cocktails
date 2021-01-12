@@ -1,0 +1,5 @@
+class MakeACocktail::Scraper
+
+
+
+end
