@@ -1,7 +1,7 @@
 class MakeACocktail::CLI
 
     def start
-        puts "Hello how are you"
+        puts "Let's make a drink!" 
     end
 
 
