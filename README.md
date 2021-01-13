@@ -1,4 +1,20 @@
+1. Greet the user
+2. List the drinks the user can choose from to make
+3. The user picks a drink to make
+4. List all the ingredients/ recipe for that drink
+5. Ask th user if they would like to make another drink or exit
+
+
+What is a drink?
+
+A drink has a name
+a drink has ingredients
+a drink has a recipe/ steps on how to make it
+
+
 # MakeACocktail
+
+Find out how to make a drink of your choice!
 
 Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/make_a_cocktail`. To experiment with that code, run `bin/console` for an interactive prompt.
 

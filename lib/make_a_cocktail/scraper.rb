@@ -4,21 +4,24 @@ class MakeACocktail::Scraper
         url = "https://www.liquor.com/classic-cocktails-4779424"
 
         website = Nokogiri::HTML(open(url))
-        
+        drinks = []
+
         array_of_drinks = website.css("div.loc div.card-list__item")
         
-        array_of_drinks.each do |drink|
-            drink_name = drink.css("span.card__underline").text
-            binding.pry
-
-            
+        array_of_drinks.each_with_index do |drink, index|
+            drink_name = drink.css("span.card__underline").text.strip
+            drink_url = drink.css("a").attr("href").value
+            drinks << {name: drink_name, url: drink_url}
+            puts "#{index + 1}. #{drink_name}"
+            # binding.pry
         end
-
+        drinks
     end
 
-    def self.scrape_recipe(drink)
+    def self.scrape_recipe(drink_url)
         drink = {}
-        drink_page = Nokogiri::HTML(open())
+        drink_page = Nokogiri::HTML(open(drink_url))
+        binding.pry
 
     end
 
