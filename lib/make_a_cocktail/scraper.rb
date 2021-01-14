@@ -13,15 +13,15 @@ class MakeACocktail::Scraper
             drink_url = drink.css("a").attr("href").value
             drinks << {name: drink_name, url: drink_url}
             puts "#{index + 1}. #{drink_name}"
-            # binding.pry
+            binding.pry
         end
         drinks
     end
 
-    def self.scrape_recipe(drink_url)
+    def self.scrape_recipe
         drink = {}
         drink_page = Nokogiri::HTML(open(drink_url))
-        binding.pry
+        # binding.pry
 
     end
 

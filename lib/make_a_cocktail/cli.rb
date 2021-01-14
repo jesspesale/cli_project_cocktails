@@ -7,7 +7,7 @@ class MakeACocktail::CLI
         # list all the cocktails
         # MakeACocktail::Scraper
         #list_drinks
-         MakeACocktail::Scraper.scrape_drinks
+        #  MakeACocktail::Scraper.scrape_drinks
     end
 
     def list_drinks
