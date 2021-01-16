@@ -7,6 +7,9 @@ class MakeACocktail::Drink
         end
      end
 
+     def info(drinnk)
+        #shows drinks ingredients and recipe
+     end
 
 
 
