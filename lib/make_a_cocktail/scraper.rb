@@ -12,7 +12,9 @@ class MakeACocktail::Scraper
             drink_name = drink.css("span.card__underline").text.strip
             drink_url = drink.css("a").attr("href").value
             drinks << {name: drink_name, url: drink_url}
-            puts "\n#{index + 1}. #{drink_name}"
+
+            MakeACocktail::Drink.new(drink_name, drink_url)
+            # puts "\n#{index + 1}. #{drink_name}"
             # binding.pry
         end
         drinks

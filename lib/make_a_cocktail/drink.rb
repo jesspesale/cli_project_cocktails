@@ -1,29 +1,30 @@
 class MakeACocktail::Drink
 
-   @@all = []
-   # @@all = [ "LIT", "Baybreeze", "Vodka Soda"]
+      @@all = []
 
-     attr_accessor :name, :url, :ingredients, :recipe
+      attr_accessor :name, :url, :ingredients, :recipe
 
-     def initialize(name)
-      @name = name
-      save
+      def initialize(name, url)
+         @name = name
+         @url = url
+         save
       #   drink_hash.each do |drink, url|
       #   end
-     end
+      end
 
-     def self.all
-      @@all
-      # = MakeACocktail::Scraper.scrape_drinks
-     end
+      def self.all
+         MakeACocktail::Scraper.scrape_drinks if @@all.empty?
+         # binding.pry
+         @@all
+      end
 
-     def save
-      @@all << self
-     end
+      def save
+         @@all << self
+      end
 
-     def info(drink)
+      def info(drink)
         #shows drinks ingredients and recipe
-     end
+      end
 
 
 
