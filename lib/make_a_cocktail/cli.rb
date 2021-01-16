@@ -11,20 +11,25 @@ class MakeACocktail::CLI
     end
 
     def get_drinks
-        # to be scraped
         # @drinks = [ "LIT", "Baybreeze", "Vodka Soda"]
-        @drinks = MakeACocktail::Scraper.scrape_drinks
+        # @drinks = MakeACocktail::Scraper.scrape_drinks
+        
+        MakeACocktail::Drink.new("LIT")
+        MakeACocktail::Drink.new("Margarita")
+        @drinks = MakeACocktail::Drink.all
+        # binding.pry
         puts "\nPlease enter the number of the drink you would like to make."
     end
 
-    # def list_drinks
-    #     puts "\nHere is the list of drinks to choose from:"
-    #     @drinks.each_with_index do |drink, index| 
-    #     puts "#{index + 1}. #{drink}" 
-    #     end
-    # end
+    def list_drinks
+        puts "\nHere is the list of drinks to choose from:"
+        @drinks.each_with_index do |drink, index| 
+        puts "#{index + 1}. #{drink.name}" 
+        end
+    end
 
     def get_users_drink
+        list_drinks
         @chosen_drink = gets.strip.to_i
         if valid_input(@chosen_drink)
             show_drink_info_for(@chosen_drink) 
