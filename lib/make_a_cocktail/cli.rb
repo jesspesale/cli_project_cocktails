@@ -48,11 +48,16 @@ class MakeACocktail::CLI
     def valid_input(input)
         input <= @drinks.length && input > 0 
     end
+
+    def get_drink_url
+        
+    end
     
     def show_drink_info_for(chosen_drink)
+        @ingredients = MakeACocktail::Drink.ingredients
+
         drink = @drinks[@chosen_drink - 1]
         puts "\nHere is how to make a #{@chosen_drink}"
-        # binding.pry
         # display cocktail info
         # MakeACocktail::Drink.info
         another_drink

@@ -1,9 +1,9 @@
 class MakeACocktail::Scraper
 
     def self.scrape_drinks
-        url = "https://www.liquor.com/classic-cocktails-4779424"
+        @url = "https://www.liquor.com/classic-cocktails-4779424"
 
-        website = Nokogiri::HTML(open(url))
+        website = Nokogiri::HTML(open(@url))
         drinks = []
 
         array_of_drinks = website.css("div.loc div.card-list__item")
@@ -14,13 +14,26 @@ class MakeACocktail::Scraper
             drinks << {name: drink_name, url: drink_url}
 
             MakeACocktail::Drink.new(drink_name, drink_url)
-            # puts "\n#{index + 1}. #{drink_name}"
+            binding.pry
+        end
+        drinks
+    end
+
+    def self.scrape_url
+        doc = Nokogiri::HTML(open(@url))
+
+        links = website.css("div.loc div.card-list__item")
+        
+        links.each do |url|
+            drink_url = drink.css("a").attr("href").value
+
+            MakeACocktail::Drink.new(drink_name, drink_url)
             # binding.pry
         end
         drinks
     end
 
-    def self.scrape_recipe
+    def self.scrape_recipe(url)
         drink = {}
         drink_page = Nokogiri::HTML(open(drink_url))
         # binding.pry
@@ -29,14 +42,3 @@ class MakeACocktail::Scraper
 
 
 end
-
-
-
-
-
-# puts section.count	= 38 (which is what we want)^
-
-# section.each do |drink|
-#   puts drink.css("span.card__underline")
-# end
-#  = all the drink names
