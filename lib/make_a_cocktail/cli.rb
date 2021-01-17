@@ -9,7 +9,6 @@ class MakeACocktail::CLI
 
     def get_drinks
         @drinks = MakeACocktail::Drink.all
-        # binding.pry 
     end
 
     def list_drinks
@@ -48,7 +47,6 @@ class MakeACocktail::CLI
     
     def valid_input(input)
         input <= @drinks.length && input > 0 
-        # && input.class == integer
     end
     
     def show_drink_info_for(chosen_drink)
@@ -68,12 +66,16 @@ class MakeACocktail::CLI
             list_drinks
             get_users_drink
         elsif input == "n"
-            puts "\nHave a good day!"
+            exit
         else
             puts "\nPlease try again."
             another_drink
         end
     end
+
+    def exit
+        puts "Enjoy your drink!"
+    end     
 
 
 end
