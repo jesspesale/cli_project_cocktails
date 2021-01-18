@@ -23,15 +23,20 @@ class MakeACocktail::Drink
          @@all << self
       end
 
-      def self.ingredients
+      def self.ingredients(chosen_drink)
          # binding.pry
-         MakeACocktail::Scraper.scrape_recipe(drink_url) if @ingredients.empty?
+         @drinks.each_with_index do |drink, index| 
+            @drink_url = drink.url
+            @index = index
+            binding.pry
+        end
+         MakeACocktail::Scraper.scrape_recipe(self) if ingredients.empty?
          @ingredients
       end
 
-      def info(drink)
-        #shows drinks ingredients and recipe
-      end
+      # def info(drink)
+      #   #shows drinks ingredients and recipe
+      # end
 
 
 
