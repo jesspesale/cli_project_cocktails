@@ -27,6 +27,7 @@ class MakeACocktail::CLI
         if valid_input(@chosen_drink)
             get_drink_url(@chosen_drink)
             show_drink_info_for(@drink_url) 
+            another_drink
         else
             wrong_input
             get_users_drink
@@ -35,7 +36,20 @@ class MakeACocktail::CLI
     
     def get_drink_url(drink_number)
         @drink_url = @drinks[drink_number - 1].url
+        @drink_name = @drinks[drink_number - 1].name
+        puts "\nHere are the ingredients for a #{@drink_name}:"
     end
+
+    def show_drink_info_for(drink_url)
+        @ingredients = MakeACocktail::Scraper.scrape_recipe(@drink_url)
+
+       @ingredients.each do |x|
+            if x.include? "Garnish:"
+                
+            puts "\n#{x}" unless x.include? "Garnish:"
+       end
+
+        end
 
     def wrong_input
         puts "\nSorry please pick a number corresponding to the drinks or press 0 to view the list of drinks again."
@@ -53,34 +67,6 @@ class MakeACocktail::CLI
     def valid_input(input)
         input <= @drinks.length && input > 0 
     end
-
-    
-    def show_drink_info_for(drink_url)
-        MakeACocktail::Scraper.scrape_recipe(@drink_url)
-    
-        # doc = Nokogiri::HTML(open(drink_url))
-        # ingredients_section = doc.css("li.structured-ingredients__list-item").text
-        # ingredients_array = ingredients_section.split("\n")
-        # no_empty_strings = ingredients_array.reject { |i| i.empty?}
-        # @first_ingredient = no_empty_strings[0]
-        # @second_ingredient =  no_empty_strings[1]
-        # binding.pry
-
-        end
-        
-    # # end
-
-
-
-    #     binding.pry
-    #     #add @ingredients = in the front ^^
-    #     #add url argument for scrape_recipe
-
-    #     # puts "\nHere is how to make a #{@chosen_drink}"
-    #     # display cocktail info
-    #     # MakeACocktail::Drink.info
-    #     # another_drink
-    # end
 
     def another_drink
         puts "\nWould you like to make another drink? Enter y or n"

@@ -28,7 +28,7 @@ class MakeACocktail::Drink
          @drinks.each_with_index do |drink, index| 
             @drink_url = drink.url
             @index = index
-            binding.pry
+            # binding.pry
         end
          MakeACocktail::Scraper.scrape_recipe(self) if ingredients.empty?
          @ingredients
