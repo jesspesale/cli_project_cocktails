@@ -15,14 +15,19 @@ class MakeACocktail::CLI
         puts "\nHere is the list of drinks to choose from:"
         @drinks.each_with_index do |drink, index| 
             # next if index == 4
-            # next if drink.name == "11 Martini Variations to Try Right Now" && drink.name == "Famous Cocktails That Have Evolved Over Time"
-            puts "#{index + 1}. #{drink.name}" 
-            # binding.pry
+            # next if index + 1 == 4 && drink.name == "11 Martini Variations to Try Right Now" 
+            # && drink.name == "Famous Cocktails That Have Evolved Over Time"
+            if index == 4 && index == 13 && index == 16 
+                nil
+            else
+                puts "#{index + 1}. #{drink.name}" 
+            end
         end
-        puts "\nPlease enter the number of the drink you would like to make."
     end
     
     def get_users_drink
+         puts "\nScroll up to view the list of drinks"
+        puts "\nPlease enter the number of the drink you would like to make."
         @chosen_drink = gets.strip.to_i
         if valid_input(@chosen_drink)
             get_drink_url(@chosen_drink)
@@ -41,15 +46,17 @@ class MakeACocktail::CLI
     end
 
     def show_drink_info_for(drink_url)
-        @ingredients = MakeACocktail::Scraper.scrape_recipe(@drink_url)
+        @ingredients = MakeACocktail::Scraper.scrape_ingredients(@drink_url)
 
        @ingredients.each do |x|
             if x.include? "Garnish:"
-                
-            puts "\n#{x}" unless x.include? "Garnish:"
-       end
-
+                puts "Garnish with#{x.gsub("Garnish:", "")}"
+                # puts "Garnish with#{x.delete("Garnish:")}"
+            else
+                puts "#{x}" unless x.include? "Garnish:"
+            end
         end
+    end
 
     def wrong_input
         puts "\nSorry please pick a number corresponding to the drinks or press 0 to view the list of drinks again."

@@ -23,7 +23,7 @@ class MakeACocktail::Scraper
     #ingredients_section = doc.css("ul.structured-ingredients__list").text[2,5]
     #   def self.scrape_recipe(drink_url)
 
-    def self.scrape_recipe(drink_url)
+    def self.scrape_ingredients(drink_url)
         drink_recipe = {}
    
         doc = Nokogiri::HTML(open(drink_url))
