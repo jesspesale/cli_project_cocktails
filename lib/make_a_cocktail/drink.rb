@@ -9,7 +9,6 @@ class MakeACocktail::Drink
          @name = name
          @url = url
          save
-         @ingredients = []
       end
 
       def self.all
@@ -20,17 +19,22 @@ class MakeACocktail::Drink
       def save
          @@all << self
       end
-
-      def self.ingredients(chosen_drink)
-         # binding.pry
-         @drinks.each_with_index do |drink, index| 
-            @drink_url = drink.url
-            @index = index
-   
-        end
-         MakeACocktail::Scraper.scrape_recipe(self) if ingredients.empty?
-         @ingredients
-      end
+      
+   end
 
 
-end
+
+
+
+
+
+   # def self.ingredients(chosen_drink)
+   #    # binding.pry
+   #    @drinks.each_with_index do |drink, index| 
+   #       @drink_url = drink.url
+   #       @index = index
+
+   #   end
+   #    MakeACocktail::Scraper.scrape_recipe(self) if ingredients.empty?
+   #    @ingredients
+   # end
