@@ -1,7 +1,7 @@
 class MakeACocktail::CLI
 
     def start
-        puts "\nWelcome, let's make a drink!" 
+        puts "\nWelcome, let's make a drink!".cyan
         get_drinks
         list_drinks
         get_users_drink
@@ -12,16 +12,16 @@ class MakeACocktail::CLI
     end
     
     def list_drinks
-        puts "\nHere is the list of drinks to choose from:"
+        puts "\nHere is the list of drinks to choose from:".cyan
         @drinks.each do |x|
             @drink_name = x.name
         end
       
         @drinks.each_with_index do |drink, index| 
-            puts "#{index + 1}. #{drink.name}" 
+            puts "#{index + 1}. #{drink.name}".blue
         end
-        puts "\nScroll up to view the list of drinks"
-        puts "\nPlease enter the number associated with the drinnk you would like to see the ingredients for." 
+        puts "\nScroll up to view the list of drinks".cyan
+        puts "\nPlease enter the number associated with the drink you would like to see the ingredients for.".cyan
     end
     
     def get_users_drink
@@ -44,23 +44,23 @@ class MakeACocktail::CLI
     def show_drink_info_for(drink_url)
         @ingredients = MakeACocktail::Scraper.scrape_ingredients(@drink_url)
         if @ingredients.empty?
-            puts "\nI'm sorry there was an issue getting those ingredients, please pick another number."
+            puts "\nI'm sorry there was an issue getting those ingredients, please pick another number.".red
             get_users_drink
         else
-            puts "\nHere are the ingredients for a #{@drink_name}:"
+            puts "\nHere are the ingredients for a #{@drink_name}:".cyan
             @ingredients.each do |x|
             if x.include? "Garnish:"
-                puts "Garnish with#{x.gsub("Garnish:", "")}"
+                puts "Garnish with#{x.gsub("Garnish:", "")}".green
                 # puts "Garnish with#{x.delete("Garnish:")}"
             else
-                puts "#{x}" unless x.include? "Garnish:"
+                puts "#{x}".green unless x.include? "Garnish:"
             end
         end
     end
     end
 
     def wrong_input
-        puts "\nSorry please pick a number corresponding to the drinks or press 0 to view the list of drinks again."
+        puts "\nSorry please pick a number corresponding to the drinks or press 0 to view the list of drinks again.".red
         input = gets.strip.to_i
         if input == 0 
             list_drinks
@@ -80,23 +80,23 @@ class MakeACocktail::CLI
     end
 
     def another_drink
-        puts "\nWould you like to make another drink? Enter y or n"
+        puts "\nWould you like to make another drink? Enter y or n".cyan
         input = gets.strip
         if input == "y"
-            puts "\nOkay, here is the list of drinks to choose from"
+            puts "\nOkay, here is the list of drinks to choose from".cyan
             list_drinks
             get_users_drink
         elsif input == "n"
            
             exit
         else
-            puts "\nPlease try again."
+            puts "\nPlease try again.".red
             another_drink
         end
     end
 
     def exit
-        abort "\nHave a nice day!"
+        abort "\nEnjoy your drink!".blue
     end
 
 end
