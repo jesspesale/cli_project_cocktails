@@ -21,7 +21,7 @@ class MakeACocktail::CLI
             puts "#{index + 1}. #{drink.name}" 
         end
         puts "\nScroll up to view the list of drinks"
-       puts "\nPlease enter the number of the drink you would like to see the ingredients for."
+        puts "\nPlease enter the number associated with the drinnk you would like to see the ingredients for." 
     end
     
     def get_users_drink
@@ -66,6 +66,8 @@ class MakeACocktail::CLI
             list_drinks
             get_users_drink
         elsif valid_input(input)
+            # binding.pry
+            get_drink_url(input)
             show_drink_info_for(input)
             another_drink
         else
@@ -85,16 +87,16 @@ class MakeACocktail::CLI
             list_drinks
             get_users_drink
         elsif input == "n"
-            puts "Enjoy your drink!"
-            # exit
+           
+            exit
         else
             puts "\nPlease try again."
             another_drink
         end
     end
 
-    # def exit
-    #     puts "Have a nice day!"
-    # end
+    def exit
+        abort "\nHave a nice day!"
+    end
 
 end
