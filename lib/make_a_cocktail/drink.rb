@@ -2,8 +2,7 @@ class MakeACocktail::Drink
 
       @@all = []
 
-      attr_accessor :name, :url, :recipe
-      attr_writer :ingredients
+      attr_accessor :name, :url 
 
       def initialize(name, url)
          @name = name
@@ -27,6 +26,14 @@ class MakeACocktail::Drink
 
 
 
+
+
+
+
+
+
+
+   
 
 
 

@@ -1,9 +1,9 @@
 class MakeACocktail::Scraper
 
     def self.scrape_drinks
-        @url = "https://www.liquor.com/classic-cocktails-4779424"
+        url = "https://www.liquor.com/classic-cocktails-4779424"
 
-        website = Nokogiri::HTML(open(@url))
+        website = Nokogiri::HTML(open(url))
         drinks = []
 
         array_of_drinks = website.css("div.loc div.card-list__item")
@@ -27,13 +27,14 @@ class MakeACocktail::Scraper
             ingredients_section = doc.css("li.structured-ingredients__list-item").text
             ingredients_array = ingredients_section.split("\n")
             ingredients_with_no_empty_strings = ingredients_array.reject { |i| i.empty?}
+            # binding.pry
             ingredients_with_no_empty_strings[-2] = ingredients_with_no_empty_strings[-2] + " " + ingredients_with_no_empty_strings[-1]
             ingredients_with_no_empty_strings.pop
             ingredients_with_no_empty_strings
-            # binding.pry
         else 
             ingredients_arr = doc.css("li.simple-list__item").text.split("\n")
             ingredients = ingredients_arr.reject{ |i| i.empty?}
+            # binding.pry
             ingredients
         end     
     end

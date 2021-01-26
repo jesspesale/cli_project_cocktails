@@ -13,9 +13,6 @@ class MakeACocktail::CLI
     
     def list_drinks
         puts "\nHere is the list of drinks to choose from:".cyan
-        @drinks.each do |x|
-            @drink_name = x.name
-        end
       
         @drinks.each_with_index do |drink, index| 
             puts "#{index + 1}. #{drink.name}".blue
@@ -27,7 +24,7 @@ class MakeACocktail::CLI
     def get_users_drink
         @chosen_drink = gets.strip.to_i
         if valid_input(@chosen_drink)
-            get_drink_url(@chosen_drink)
+            get_drink_info(@chosen_drink)
             show_drink_info_for(@drink_url) 
             another_drink
         else
@@ -36,7 +33,7 @@ class MakeACocktail::CLI
         end
     end
     
-    def get_drink_url(drink_number)
+    def get_drink_info(drink_number)
         @drink_url = @drinks[drink_number - 1].url
         @drink_name = @drinks[drink_number - 1].name 
     end
@@ -50,13 +47,12 @@ class MakeACocktail::CLI
             puts "\nHere are the ingredients for a #{@drink_name}:".cyan
             @ingredients.each do |x|
             if x.include? "Garnish:"
-                puts "Garnish with#{x.gsub("Garnish:", "")}".green
-                # puts "Garnish with#{x.delete("Garnish:")}"
+                puts "Garnish with a#{x.gsub("Garnish:", "")}".green
             else
-                puts "#{x}".green unless x.include? "Garnish:"
+                puts "#{x}".green 
             end
         end
-    end
+     end
     end
 
     def wrong_input
