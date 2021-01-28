@@ -13,8 +13,9 @@ class MakeACocktail::CLI
     
     def list_drinks
         puts "\nHere is the list of drinks to choose from:".cyan
-      
-        @drinks.each_with_index do |drink, index| 
+        # @drinks.sort_by! {|a| a.name }       
+        
+        @drinks.sort_by {|a| a.name }.each_with_index do |drink, index|     #sorts the drinks alphabetically
             puts "#{index + 1}. #{drink.name}".blue
         end
         puts "\nScroll up to view the list of drinks".cyan
@@ -34,17 +35,18 @@ class MakeACocktail::CLI
     end
     
     def get_drink_info(drink_number)
-        @drink_url = @drinks[drink_number - 1].url
-        @drink_name = @drinks[drink_number - 1].name 
+        @drink = @drinks[drink_number - 1]
+        # @drink_url = @drinks[drink_number - 1].url
+        # @drink_name = @drinks[drink_number - 1].name 
     end
 
     def show_drink_info_for(drink_url)
-        @ingredients = MakeACocktail::Scraper.scrape_ingredients(@drink_url)
+        @ingredients = MakeACocktail::Scraper.scrape_ingredients(@drink.url)
         if @ingredients.empty?
             puts "\nI'm sorry there was an issue getting those ingredients, please pick another number.".red
             get_users_drink
         else
-            puts "\nHere are the ingredients for a #{@drink_name}:".cyan
+            puts "\nHere are the ingredients for a #{@drink.name}:".cyan
             @ingredients.each do |x|
             if x.include? "Garnish:"
                 puts "Garnish with a#{x.gsub("Garnish:", "")}".green
@@ -63,7 +65,7 @@ class MakeACocktail::CLI
             get_users_drink
         elsif valid_input(input)
             # binding.pry
-            get_drink_url(input)
+            get_drink_info(input)
             show_drink_info_for(input)
             another_drink
         else
@@ -82,8 +84,7 @@ class MakeACocktail::CLI
             puts "\nOkay, here is the list of drinks to choose from".cyan
             list_drinks
             get_users_drink
-        elsif input == "n"
-           
+        elsif input == "n"          
             exit
         else
             puts "\nPlease try again.".red

@@ -7,7 +7,7 @@ class MakeACocktail::Drink
       def initialize(name, url)
          @name = name
          @url = url
-         save
+         self.save
       end
 
       def self.all
